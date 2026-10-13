@@ -1,0 +1,60 @@
+{# Shared building blocks for the email and the report. Repeated styling lives in
+   the CSS from styles(), emitted once in each document's <style> block. #}
+{% macro styles() %}
+.ca{color:#52606D;text-decoration:underline;font-size:12px;}
+.cd{color:#52606D;font-size:11px;}
+.lbl{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#52606D;font-weight:bold;}
+.hd{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:#1E40AF;font-weight:bold;padding:0 0 8px 0;border-bottom:1px solid #E4E7EB;margin-bottom:12px;}
+.chip{display:inline-block;border:1px solid #E4E7EB;border-radius:999px;padding:3px 10px;font-size:12px;color:#1F2933;background:#FFFFFF;margin:0 6px 4px 0;}
+.pill{display:inline-block;border:1px solid #2563EB;border-radius:999px;padding:1px 8px;font-size:11px;color:#1E40AF;margin:0 4px 4px 0;}
+.bdg{display:inline-block;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:bold;letter-spacing:.5px;text-transform:uppercase;}
+.bdg-n{color:#1F2933;background:#F0F2F4;}
+.bdg-hi{color:#166534;background:#DCFCE7;}
+.bdg-md{color:#92400E;background:#FEF3C7;}
+.bdg-lo{color:#52606D;background:#F0F2F4;}
+.cf{display:inline-block;border:1px solid #E4E7EB;border-radius:3px;padding:0 5px;font-family:Consolas,'Courier New',monospace;font-size:12px;color:#1F2933;background:#FFFFFF;}
+.em{color:#52606D;font-size:13px;font-style:italic;}
+{% endmacro %}
+
+{% macro cites(ids) %}
+{% for name, url, pub in ids|links %}<a href="{{ url }}" class="ca">{{ name }}</a>{% if pub %} <span class="cd">{{ pub|datefmt('%-d %b') }}</span>{% endif %}{% if not loop.last %} &middot; {% endif %}{% endfor %}{% set cut = ids|cites_cut %}{% if cut %} <span class="cd">+{{ cut }} more in full report</span>{% endif %}
+{% endmacro %}
+
+{% macro label(text) %}
+<div class="lbl">{{ text }}</div>
+{% endmacro %}
+
+{% macro heading(text) %}
+<div class="hd">{{ text }}</div>
+{% endmacro %}
+
+{% macro chip(text) %}
+<span class="chip">{{ text }}</span>
+{% endmacro %}
+
+{% macro pill(text) %}
+<span class="pill">{{ text }}</span>
+{% endmacro %}
+
+{% macro badge(text, kind) %}
+<span class="bdg bdg-{{ kind }}">{{ text }}</span>
+{% endmacro %}
+
+{% macro opportunity(level) %}
+{% if level == 'High' %}{{ badge('High', 'hi') }}
+{% elif level == 'Med' %}{{ badge('Med', 'md') }}
+{% else %}{{ badge('Low', 'lo') }}
+{% endif %}
+{% endmacro %}
+
+{% macro conf(tag) %}
+<span title="{{ tag|conf_label }}" class="cf">{{ tag }}</span>
+{% endmacro %}
+
+{% macro lines_pills(lines) %}
+{% for line in lines %}{{ pill(line) }}{% endfor %}
+{% endmacro %}
+
+{% macro empty() %}
+<div class="em">Nothing notable today.</div>
+{% endmacro %}

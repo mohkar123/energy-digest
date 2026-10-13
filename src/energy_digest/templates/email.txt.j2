@@ -1,0 +1,109 @@
+{# Each citation starts on a new line; trim_blocks would swallow a literal one. #}
+{% macro cites(ids) %}{% for name, url, pub in ids|links %}{{ '\n' }}    - {{ name }} ({{ url }}){% endfor %}{% set cut = ids|cites_cut %}{% if cut %}{{ '\n' }}    +{{ cut }} more in full report{% endif %}{% endmacro %}
+MARKET READING
+{{ d.run_date|datefmt('%A %-d %B %Y') }}
+{{ ctx.items_scanned }} items scanned | Markets: {{ covered_markets|join(', ') or 'none' }} | {{ watchlist|length }} watchlist hit(s)
+{% if d.degraded %}
+
+!! HEADLINES ONLY: synthesis was unavailable or incomplete today.
+{% endif %}
+
+TOP STORIES
+{% for s in d.top_stories %}
+* [{{ s.market|market_name }}] {{ s.headline }}
+  {{ s.summary }}{{ cites(s.item_ids) }}
+{% else %}
+Nothing notable today.
+{% endfor %}
+
+FORECAST IMPACT
+{% for f in d.forecast_impact %}
+* [{{ f.product_lines|join(', ') }}] ({{ f.impact_type }}) {{ f.so_what }}
+  Next step: {{ f.suggested_action }}{% if f.accounts %}{{ '\n' }}  Accounts: {{ f.accounts|join(', ') }}{% endif %}{{ cites(f.item_ids) }}
+{% else %}
+Nothing notable today.
+{% endfor %}
+
+WATCHLIST HIGHLIGHTS
+{% for w in watchlist %}
+* {{ w.watchlist_hits|join(', ') }}: {{ w.item.title }}{{ cites([w.item.id]) }}
+{% else %}
+Nothing notable today.
+{% endfor %}
+
+MARKET RESEARCH
+{% for r in d.radar %}
+* {{ r.market|market_name }} | {{ r.signal }} | next: {{ r.next_milestone_date|datefmt or 'n/a' }} | lens: {{ r.forecast_lens|join(', ') }} | {{ r.opportunity }} | {{ r.confidence }}{{ cites(r.item_ids) }}
+{% else %}
+Nothing notable today.
+{% endfor %}
+{% set dd = d.deep_dive %}
+
+Deep dive: {{ dd.market|market_name }}
+What moved:
+{% for m in dd.what_moved %}
+  - {{ m.one_liner }}{{ cites(m.item_ids) }}
+{% else %}
+  Nothing notable today.
+{% endfor %}
+Next dates:
+{% for c in dd.regulatory_calendar %}
+  - {{ c.date|datefmt or 'TBC' }}: {{ c.what }} [{{ c.confidence }}]{{ cites(c.item_ids) }}
+{% else %}
+  Nothing notable today.
+{% endfor %}
+Account implications:
+{% for m in dd.account_implications %}
+  - {{ m.one_liner }}{{ cites(m.item_ids) }}
+{% else %}
+  Nothing notable today.
+{% endfor %}
+Open questions:
+{% for q in dd.open_questions %}
+  - {{ q }}
+{% else %}
+  Nothing notable today.
+{% endfor %}
+
+UPCOMING DATES
+{% for u in d.upcoming %}
+* {{ u.date|datefmt }} [{{ u.market|market_name }}] {{ u.what }} [{{ u.confidence }}]{{ cites(u.item_ids) }}
+{% else %}
+Nothing notable today.
+{% endfor %}
+
+BY MARKET
+{% for code, name in market_names.items() %}
+{{ name }}
+{% for m in d.by_market.get(code, []) %}
+  - {{ m.one_liner }}{{ cites(m.item_ids) }}
+{% else %}
+  Nothing notable today.
+{% endfor %}
+{% endfor %}
+{% if d.week_in_review or d.run_date.weekday() == 4 %}
+
+WEEK IN REVIEW
+{% if d.week_in_review %}
+{% for t in d.week_in_review.themes %}
+* {{ t.one_liner }}{{ cites(t.item_ids) }}
+{% endfor %}
+{% if d.week_in_review.trend_notes %}
+{{ d.week_in_review.trend_notes }}
+{% endif %}
+{% else %}
+Nothing notable this week.
+{% endif %}
+{% endif %}
+
+---
+Source health: {% if failed_sources %}{% for s in failed_sources %}{{ s }} unavailable today{% if not loop.last %}; {% endif %}{% endfor %}{% else %}all sources reachable{% endif %}
+
+{% if d.dropped_entries %}
+{{ d.dropped_entries }} entries were dropped because their sources could not be verified.
+{% endif %}
+C confirmed from a primary source · R reported by press · I inferred
+Full report: {{ report_path }}
+Compiled with Claude from newsletters and public feeds. Read impact and opportunity calls as a starting point for discussion, not as conclusions.
+
+— end of digest · {{ n_items }} items —

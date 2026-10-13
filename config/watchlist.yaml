@@ -1,0 +1,63 @@
+# Example watchlist — all names are fictional. Replace with your own accounts.
+# kind: customer | prospect | competitor | partner
+# market: US | UK | BR | NZ | OTHER
+- name: Northwind Utility
+  kind: customer
+  market: US
+  aliases:
+  - Northwind
+- name: Harbor Power Co-op
+  kind: customer
+  market: US
+  aliases:
+  - Harbor Power
+  - Harbor Cooperative
+- name: Prairie Electric Cooperative
+  kind: prospect
+  market: US
+  aliases:
+  - Prairie Electric
+- name: Highland Networks
+  kind: customer
+  market: UK
+  aliases:
+  - Highland Power Networks
+- name: Thames Valley Supply
+  kind: prospect
+  market: UK
+  aliases: []
+- name: Verde Energia
+  kind: customer
+  market: BR
+  aliases:
+  - Verde Distribuidora
+- name: Southern Cross Lines
+  kind: customer
+  market: NZ
+  aliases:
+  - SCL Networks
+- name: Maple Grid Distribution
+  kind: prospect
+  market: OTHER
+  aliases:
+  - Maple Grid
+- name: Contoso Grid
+  kind: partner
+  market: OTHER
+  aliases:
+  - Contoso
+- name: Acme Analytics
+  kind: competitor
+  market: US
+  aliases:
+  - Acme
+- name: Fabrikam Forecasting
+  kind: competitor
+  market: US
+  aliases:
+  - Fabrikam
+- name: Globex Energy Systems
+  kind: competitor
+  market: OTHER
+  aliases:
+  - Globex

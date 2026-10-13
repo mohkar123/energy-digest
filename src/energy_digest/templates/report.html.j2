@@ -1,0 +1,141 @@
+{% from '_macros.j2' import styles, cites, conf, opportunity, lines_pills, empty %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Market research — Market Reading {{ d.run_date|datefmt }}</title>
+<style>
+:root{--bg:#F7F7F5;--text:#1F2933;--muted:#52606D;--line:#E4E7EB;--accent:#2563EB;--accent-ink:#1E40AF;--marker:#D97706;--surface:#FFFFFF;--surface-2:#F0F2F4;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Verdana,Calibri,Arial,sans-serif;font-size:14px;line-height:1.55;}
+main{max-width:1080px;margin:0 auto;padding:32px 20px 64px;}
+.overline{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent-ink);font-weight:bold;}
+h1{font-size:28px;margin:6px 0 8px;}
+h2{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent-ink);border-bottom:1px solid var(--line);padding-bottom:8px;margin:36px 0 14px;}
+.lede{color:var(--muted);margin:0 0 12px;}
+.snapnote{border:1px solid var(--line);border-radius:8px;background:#FFFFFF;padding:10px 14px;font-size:13px;color:var(--muted);}
+.card{border:1px solid var(--line);border-radius:8px;background:#FFFFFF;padding:14px 18px;margin-bottom:12px;}
+.card h3{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin:0 0 8px;}
+.card ul{margin:0;padding-left:18px;}
+.card li{margin-bottom:6px;}
+.account{border-left:3px solid var(--marker);padding-left:10px;margin-bottom:6px;list-style:none;}
+table.data{width:100%;border-collapse:collapse;border:1px solid var(--line);background:#FFFFFF;font-size:12px;}
+table.data th{text-align:left;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);padding:8px;border-bottom:1px solid var(--line);}
+table.data td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top;}
+.hit{color:var(--marker);font-weight:bold;}
+.muted{color:var(--muted);}
+.bad{color:#92400E;background:#FEF3C7;}
+{{ styles() }}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="overline">Market research</div>
+<h1>Market Reading {{ d.run_date|datefmt('%A %-d %B %Y') }}</h1>
+<p class="lede">The full, untrimmed research behind today's email: {{ ctx.items_scanned }} items scanned, {{ ctx.scored|length }} selected.</p>
+<div class="snapnote"><strong>C</strong> confirmed from a primary source &middot; <strong>R</strong> reported by press &middot; <strong>I</strong> inferred. Compiled with Claude from newsletters and public feeds; read impact and opportunity calls as a starting point for discussion, not as conclusions.</div>
+</header>
+
+<h2>Radar</h2>
+{% if d.radar %}
+<table class="data">
+<tr><th>Market</th><th>Signal</th><th>Type</th><th>Next date</th><th>Lens</th><th>Opportunity</th><th>Conf.</th><th>Next step</th></tr>
+{% for r in d.radar %}
+<tr>
+<td><strong>{{ r.market|market_name }}</strong></td>
+<td>{{ r.signal }}<div>{{ cites(r.item_ids) }}</div></td>
+<td>{{ r.signal_type }}</td>
+<td>{{ r.next_milestone_date|datefmt or 'n/a' }}</td>
+<td>{{ r.forecast_lens|join(', ') }}</td>
+<td>{{ opportunity(r.opportunity) }}</td>
+<td>{{ conf(r.confidence) }}</td>
+<td>{{ r.next_step }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+{{ empty() }}
+{% endif %}
+
+{% set dd = d.deep_dive %}
+<h2>Deep dive: {{ dd.market|market_name }}</h2>
+<div class="card"><h3>What moved</h3>
+{% if dd.what_moved %}<ul>{% for m in dd.what_moved %}<li>{{ m.one_liner }} {{ cites(m.item_ids) }}</li>{% endfor %}</ul>{% else %}{{ empty() }}{% endif %}
+</div>
+<div class="card"><h3>Regulatory calendar</h3>
+{% if dd.regulatory_calendar %}<ul>{% for c in dd.regulatory_calendar %}<li><strong>{{ c.date|datefmt or 'TBC' }}</strong> {{ c.what }} {{ conf(c.confidence) }} {{ cites(c.item_ids) }}</li>{% endfor %}</ul>{% else %}{{ empty() }}{% endif %}
+</div>
+<div class="card"><h3>Account implications</h3>
+{% if dd.account_implications %}<ul style="padding-left:0;">{% for m in dd.account_implications %}<li class="account">{{ m.one_liner }} {{ cites(m.item_ids) }}</li>{% endfor %}</ul>{% else %}{{ empty() }}{% endif %}
+</div>
+<div class="card"><h3>Open questions to confirm</h3>
+{% if dd.open_questions %}<ul>{% for q in dd.open_questions %}<li>{{ q }}</li>{% endfor %}</ul>{% else %}{{ empty() }}{% endif %}
+</div>
+<div class="card"><h3>Competitors in play</h3>
+{% if dd.competitors_mentioned %}<ul>{% for m in dd.competitors_mentioned %}<li>{{ m.one_liner }} {{ cites(m.item_ids) }}</li>{% endfor %}</ul>{% else %}{{ empty() }}{% endif %}
+</div>
+
+<h2>Forecast impact</h2>
+{% for f in d.forecast_impact %}
+<div class="card">
+<div>{{ lines_pills(f.product_lines) }} <span class="muted">{{ f.impact_type|replace('-', ' ') }}</span></div>
+<p style="margin:6px 0;">{{ f.so_what }}</p>
+<div><strong style="color:#1E40AF;">Next step:</strong> {{ f.suggested_action }}</div>
+{% if f.accounts %}<div><span class="muted">Accounts:</span> <span class="hit">{{ f.accounts|join(', ') }}</span></div>{% endif %}
+<div>{{ cites(f.item_ids) }}</div>
+</div>
+{% else %}
+{{ empty() }}
+{% endfor %}
+
+{% if d.week_in_review or d.run_date.weekday() == 4 %}
+<h2>Week in review</h2>
+{% if d.week_in_review %}
+<div class="card">
+{% if d.week_in_review.themes %}<ul>{% for t in d.week_in_review.themes %}<li>{{ t.one_liner }} {{ cites(t.item_ids) }}</li>{% endfor %}</ul>{% endif %}
+{% if d.week_in_review.trend_notes %}<p class="muted">{{ d.week_in_review.trend_notes }}</p>{% endif %}
+</div>
+{% else %}
+<div class="muted">Nothing notable this week.</div>
+{% endif %}
+{% endif %}
+
+<h2>All scored items</h2>
+{% if ctx.scored %}
+<table class="data">
+<tr><th>Market</th><th>Title</th><th>Source</th><th>Topic</th><th>Mkt</th><th>Fcst</th><th>Lines</th><th>Watchlist</th><th>Also reported by</th></tr>
+{% for s in ctx.scored %}
+{% set link = [s.item.id]|links %}
+<tr>
+<td>{{ s.score.market|market_name }}</td>
+<td>{% if link %}<a href="{{ link[0][1] }}" style="color:#1F2933;">{{ s.item.title }}</a>{% else %}{{ s.item.title }}{% endif %}</td>
+<td>{{ s.item.source_name }}</td>
+<td>{{ s.score.topic }}</td>
+<td>{{ s.score.market_relevance }}</td>
+<td>{{ s.score.forecast_relevance }}</td>
+<td>{{ s.score.forecast_lines|join(', ') }}</td>
+<td class="hit">{{ s.watchlist_hits|join(', ') }}</td>
+<td>{{ s.item.also_reported_by|join(', ') }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+{{ empty() }}
+{% endif %}
+
+<h2>Source health</h2>
+<table class="data">
+<tr><th>Source</th><th>Status</th><th>Items</th><th>Error</th></tr>
+{% for name, h in ctx.source_health.items()|sort %}
+<tr{% if not h.get('ok') %} class="bad"{% endif %}>
+<td>{{ name }}</td>
+<td>{{ 'ok' if h.get('ok') else 'unavailable today' }}</td>
+<td>{{ h.get('items', '') }}</td>
+<td>{{ h.get('error', '') }}</td>
+</tr>
+{% endfor %}
+</table>
+</main>
+</body>
+</html>

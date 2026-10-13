@@ -1,0 +1,6 @@
+[Unit]
+Description=Notify that %i failed
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/notify-send "Energy digest failed" "Run journalctl --user -u %i"

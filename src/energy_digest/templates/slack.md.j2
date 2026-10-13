@@ -1,0 +1,85 @@
+{# One macro per Slack part. Model text goes through |md so it cannot introduce a link; hrefs come only from |links. #}
+{# One source link per entry. Lines carry no leading spaces: a model relaying the text may collapse indentation. #}
+{% macro link(ids) %}{% for name, url, pub in (ids|links)[:1] %} ([{{ name|link_text }}]({{ url|link_url }})){% endfor %}{% endmacro %}
+{% macro more(dropped) %}{% if dropped %}{{ '\n' }}_+{{ dropped }} more in the local report_{% endif %}{% endmacro %}
+{% macro main(t, v, dropped) %}
+**Market reading · {{ t.d.run_date|datefmt('%a %-d %b') }}** · {{ t.ctx.items_scanned }} items · {{ t.watchlist|length }} watchlist hits
+{% if t.d.degraded %}
+
+> ⚠️ Headlines only today — synthesis was unavailable or incomplete.
+{% endif %}
+
+**Top stories**
+{% for s in v.top_stories %}
+{% set why = (s.why_short or s.summary)|clip(140) %}
+• [{{ s.market }}] {{ (s.headline_short or s.headline)|clip(90)|md }}{% if why %} — {{ why|md }}{% endif %}{{ link(s.item_ids) }}
+{% else %}
+_Nothing notable today._
+{% endfor %}
+
+**Forecast impact**
+{% for f in v.impacts %}
+{% set so_what = (f.impact.so_what_short or f.impact.so_what)|clip(90) %}
+{% set action = (f.impact.action_short or f.impact.suggested_action)|clip(60) %}
+• {% for p in f.impact.product_lines %}`{{ p }}` {% endfor %}{% if f.who %}{{ f.who|md }} — {% endif %}{{ so_what|md }}{% if action %} → {{ action|md }}{% endif %}{{ link(f.link_ids) }}
+{% else %}
+_Nothing notable today._
+{% endfor %}
+{{ more(dropped) }}
+
+_More in thread ↓_
+{% endmacro %}
+{% macro research(t, v, dropped) %}
+**Market research**
+
+{% if v.radar %}
+| Market | Signal | Next date | Lens | Opp. | Conf. |
+|---|---|---|---|---|---|
+{% for r in v.radar %}
+| {{ r.market|market_name|cell }} | {{ r.signal|clip(80)|cell }} | {{ (r.next_milestone_date|datefmt) or 'n/a' }} | {{ r.forecast_lens|join(', ')|cell }} | {{ r.opportunity }} | {{ r.confidence }} |
+{% endfor %}
+{% else %}
+_Nothing notable today._
+{% endif %}
+{{ more(dropped) }}
+{% endmacro %}
+{% macro upcoming(t, v, dropped) %}
+**Upcoming dates**
+{% for u in v.upcoming %}
+• {{ u.date|datefmt('%a %-d %b') }} · [{{ u.market }}] {{ u.what|clip(140)|md }}
+{% else %}
+_Nothing notable today._
+{% endfor %}
+{{ more(dropped) }}
+{% endmacro %}
+{% macro by_market(t, v, dropped) %}
+**By market**
+{% set ns = namespace(any=false) %}
+{% for code, name in t.market_names.items() %}
+{% set lines = v['bm_' ~ code] %}
+{% if lines %}
+{% set ns.any = true %}
+
+**{{ name }}**
+{% for m in lines %}
+• {{ m.one_liner|clip(120)|md }}{{ link(m.item_ids) }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% if not ns.any %}
+_Nothing notable today._
+{% endif %}
+{{ more(dropped) }}
+{% endmacro %}
+{% macro week(t, v, dropped) %}
+**Week in review**
+{% for m in v.themes %}
+• {{ m.one_liner|clip(120)|md }}{{ link(m.item_ids) }}
+{% else %}
+_Nothing notable this week._
+{% endfor %}
+{{ more(dropped) }}
+{% endmacro %}
+{% macro footer(t, v, dropped) %}
+Sources: {% if t.failed_sources %}{{ t.failed_sources|length }} unavailable{% else %}all OK{% endif %} · C/R/I = confirmed/reported/inferred · Full report: {{ t.report_path }} · — end of digest · {{ t.n_items }} items —
+{% endmacro %}

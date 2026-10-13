@@ -1,0 +1,238 @@
+{% from '_macros.j2' import styles, cites, label, heading, chip, badge, opportunity, conf, lines_pills, empty %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Market reading {{ d.run_date|datefmt }}</title>
+<style>
+body{margin:0;padding:0;background:#F7F7F5;}
+a{color:#52606D;}
+td{font-family:Verdana,Calibri,Arial,sans-serif;}
+{{ styles() }}
+.sec{padding:0 0 24px 0;}
+.tc{border:1px solid #E4E7EB;border-radius:8px;background:#FFFFFF;margin-bottom:10px;}
+.cp{padding:12px 16px;}
+.dt{border:1px solid #E4E7EB;border-radius:8px;background:#FFFFFF;border-collapse:separate;}
+.ddt{border:1px solid #E4E7EB;border-radius:8px;background:#FFFFFF;margin-top:12px;}
+.c{padding:8px;border-bottom:1px solid #E4E7EB;}
+.th{padding:8px;border-bottom:1px solid #E4E7EB;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#52606D;font-weight:bold;}
+.f12{font-size:12px;}
+.f11{font-size:11px;}
+.b{font-weight:bold;}
+.nw{white-space:nowrap;}
+.kick{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1E40AF;font-weight:bold;}
+.h1{margin:6px 0 12px 0;font-size:24px;line-height:1.25;color:#1F2933;font-weight:bold;}
+.warn{background:#FEF3C7;color:#92400E;border:1px solid #FDE68A;border-radius:8px;padding:12px 16px;font-size:13px;}
+.hl{font-size:15px;font-weight:bold;margin:2px 0 4px 0;color:#1F2933;}
+.sm{font-size:14px;color:#1F2933;}
+.ct{margin-top:6px;}
+.so{margin:4px 0;}
+.f13{font-size:13px;}
+.ac{font-size:13px;margin-top:4px;}
+.mg{color:#D97706;}
+.rd{color:#1E40AF;}
+.oc{color:#52606D;}
+.wl{margin-bottom:8px;font-size:13px;}
+.sh{font-weight:bold;margin:10px 0 2px 0;}
+.sh1{margin-top:8px;}
+.ln{margin-bottom:4px;font-size:13px;}
+.acc{border-left:3px solid #D97706;padding-left:8px;}
+.bm{margin-bottom:12px;}
+.row{font-size:13px;margin:3px 0;}
+.tn{font-size:13px;color:#52606D;margin-top:8px;}
+.ft{border-top:1px solid #E4E7EB;padding:16px 0 0 0;font-size:12px;color:#52606D;}
+.fm{margin-bottom:6px;}
+.mono{font-family:Consolas,'Courier New',monospace;}
+.end{text-align:center;letter-spacing:1px;}
+@media (max-width:660px){.wrap{width:100%!important;}}
+</style>
+</head>
+<body style="margin:0;padding:0;background:#F7F7F5;color:#1F2933;font-family:Verdana,Calibri,Arial,sans-serif;font-size:14px;line-height:1.5;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F7F7F5;">
+<tr><td align="center" style="padding:24px 12px;">
+<table role="presentation" class="wrap" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px;max-width:100%;">
+
+<tr><td style="padding:0 0 20px 0;">
+<div class="kick">MARKET READING</div>
+<h1 class="h1">{{ d.run_date|datefmt('%A %-d %B %Y') }}</h1>
+<div>
+{{ chip(ctx.items_scanned ~ ' items scanned') }}
+{{ chip('Markets: ' ~ (covered_markets|join(', ') or 'none')) }}
+{{ chip(watchlist|length ~ ' watchlist hit' ~ ('' if watchlist|length == 1 else 's')) }}
+</div>
+</td></tr>
+
+{% if d.degraded %}
+<tr><td style="padding:0 0 20px 0;">
+<div class="warn"><strong>Headlines only.</strong> Synthesis was unavailable or incomplete today, so this digest lists the top headlines without full analysis.</div>
+</td></tr>
+{% endif %}
+
+<tr><td class="sec">
+{{ heading('Top stories') }}
+{% for s in d.top_stories %}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="tc"><tr><td class="cp">
+{{ label(s.market|market_name) }}
+<div class="hl">{{ s.headline }}</div>
+<div class="sm">{{ s.summary }}</div>
+<div class="ct">{{ cites(s.item_ids) }}</div>
+</td></tr></table>
+{% else %}
+{{ empty() }}
+{% endfor %}
+</td></tr>
+
+<tr><td class="sec">
+{{ heading('Forecast impact') }}
+{% for f in d.forecast_impact %}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="tc"><tr><td class="cp">
+<div>{{ lines_pills(f.product_lines) }} {{ badge(f.impact_type|replace('-', ' '), 'n') }}</div>
+<div class="so">{{ f.so_what }}</div>
+<div class="f13"><strong class="rd">Next step:</strong> {{ f.suggested_action }}</div>
+{% if f.accounts %}
+<div class="ac"><span class="oc">Accounts:</span> <strong class="mg">{{ f.accounts|join(', ') }}</strong></div>
+{% endif %}
+<div class="ct">{{ cites(f.item_ids) }}</div>
+</td></tr></table>
+{% else %}
+{{ empty() }}
+{% endfor %}
+</td></tr>
+
+<tr><td class="sec">
+{{ heading('Watchlist highlights') }}
+{% for w in watchlist %}
+<div class="wl">
+<strong class="mg">{{ w.watchlist_hits|join(', ') }}</strong> &mdash; {{ w.item.title }}
+<div>{{ cites([w.item.id]) }}</div>
+</div>
+{% else %}
+{{ empty() }}
+{% endfor %}
+</td></tr>
+
+<tr><td class="sec">
+{{ heading('Market research') }}
+{% if d.radar %}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="dt">
+<tr>
+{% for col in ['Market', 'Signal', 'Next date', 'Lens', 'Opportunity', 'Conf.'] %}
+<td class="th">{{ col }}</td>
+{% endfor %}
+</tr>
+{% for r in d.radar %}
+<tr>
+<td valign="top" class="c f12 b">{{ r.market|market_name }}</td>
+<td valign="top" class="c f12">{{ r.signal }}<div>{{ cites(r.item_ids) }}</div></td>
+<td valign="top" class="c f12 nw">{{ r.next_milestone_date|datefmt('%-d %b %Y') or '&ndash;'|safe }}</td>
+<td valign="top" class="c f11">{{ r.forecast_lens|join(', ') }}</td>
+<td valign="top" class="c">{{ opportunity(r.opportunity) }}</td>
+<td valign="top" class="c">{{ conf(r.confidence) }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+{{ empty() }}
+{% endif %}
+
+{% set dd = d.deep_dive %}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="ddt"><tr><td class="cp">
+{{ label('Deep dive: ' ~ (dd.market|market_name)) }}
+<div class="sh sh1">What moved</div>
+{% for m in dd.what_moved %}
+<div class="ln">&bull; {{ m.one_liner }} {{ cites(m.item_ids) }}</div>
+{% else %}
+{{ empty() }}
+{% endfor %}
+<div class="sh">Next dates</div>
+{% for c in dd.regulatory_calendar %}
+<div class="ln">&bull; <strong>{{ c.date|datefmt('%-d %b %Y') or 'TBC' }}</strong> {{ c.what }} {{ conf(c.confidence) }} {{ cites(c.item_ids) }}</div>
+{% else %}
+{{ empty() }}
+{% endfor %}
+<div class="sh">Account implications</div>
+{% for m in dd.account_implications %}
+<div class="ln acc">{{ m.one_liner }} {{ cites(m.item_ids) }}</div>
+{% else %}
+{{ empty() }}
+{% endfor %}
+<div class="sh">Open questions</div>
+{% for q in dd.open_questions %}
+<div class="ln">&bull; {{ q }}</div>
+{% else %}
+{{ empty() }}
+{% endfor %}
+</td></tr></table>
+</td></tr>
+
+<tr><td class="sec">
+{{ heading('Upcoming dates') }}
+{% if d.upcoming %}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="dt">
+{% for u in d.upcoming %}
+<tr>
+<td valign="top" class="c f12 b nw">{{ u.date|datefmt('%a %-d %b %Y') }}</td>
+<td valign="top" class="c f12">{{ label(u.market|market_name) }}</td>
+<td valign="top" class="c f12">{{ u.what }} {{ conf(u.confidence) }}<div>{{ cites(u.item_ids) }}</div></td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+{{ empty() }}
+{% endif %}
+</td></tr>
+
+<tr><td class="sec">
+{{ heading('By market') }}
+{% for code, name in market_names.items() %}
+{% set lines = d.by_market.get(code, []) %}
+<div class="bm">
+{{ label(name) }}
+{% for m in lines %}
+<div class="row">&bull; {{ m.one_liner }} {{ cites(m.item_ids) }}</div>
+{% else %}
+{{ empty() }}
+{% endfor %}
+</div>
+{% endfor %}
+</td></tr>
+
+{% if d.week_in_review or d.run_date.weekday() == 4 %}
+<tr><td class="sec">
+{{ heading('Week in review') }}
+{% if d.week_in_review %}
+{% for t in d.week_in_review.themes %}
+<div class="row">&bull; {{ t.one_liner }} {{ cites(t.item_ids) }}</div>
+{% endfor %}
+{% if d.week_in_review.trend_notes %}
+<div class="tn">{{ d.week_in_review.trend_notes }}</div>
+{% endif %}
+{% else %}
+<div class="em">Nothing notable this week.</div>
+{% endif %}
+</td></tr>
+{% endif %}
+
+<tr><td class="ft">
+<div class="fm"><strong>Source health:</strong>
+{% if failed_sources %}
+{% for s in failed_sources %}{{ s }} unavailable today{% if not loop.last %}; {% endif %}{% endfor %}
+{% else %}
+all sources reachable
+{% endif %}
+</div>
+{% if d.dropped_entries %}
+<div class="fm">{{ d.dropped_entries }} entries were dropped because their sources could not be verified.</div>
+{% endif %}
+<div class="fm"><span class="mono">C</span> confirmed from a primary source &middot; <span class="mono">R</span> reported by press &middot; <span class="mono">I</span> inferred</div>
+<div class="fm">Full report: {{ report_path }}</div>
+<div class="fm">Compiled with Claude from newsletters and public feeds. Read impact and opportunity calls as a starting point for discussion, not as conclusions.</div>
+<div class="end">— end of digest · {{ n_items }} items —</div>
+</td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

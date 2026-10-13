@@ -1,0 +1,34 @@
+delivery:
+  # Your Slack member ID (Slack profile -> "..." menu -> "Copy member ID") and
+  # the ID of your self-DM channel (open your own DM in Slack in a browser; the
+  # D... segment of the URL, or "Copy link" on the conversation). `digest doctor`
+  # refuses to run while these are still the XXXXXXXXXX placeholders.
+  slack_user_id: UXXXXXXXXXX
+  slack_dm_channel: DXXXXXXXXXX
+timezone: America/Los_Angeles
+top_n: 25
+# Sender addresses of the newsletters you subscribe to. These are public
+# energy newsletters; set your own.
+newsletter_senders:
+  - newsletter@divenewsletter.com
+  - info@esig.energy
+  - hi@news.energycentral.com
+data_dir: data
+reports_dir: reports
+claude:
+  binary: claude
+  timeout_s: 600
+  # Server-level MCP prefixes stripped from Gmail runs to keep the context
+  # small (stripping unused connectors cut a Gmail run from ~188K to ~28K
+  # context tokens). List the claude.ai connectors enabled on your account.
+  disallow_mcp:
+    - mcp__claude_ai_Atlassian
+    - mcp__claude_ai_Atlassian_MCP
+    - mcp__claude_ai_Datadog
+    - mcp__claude_ai_Figma
+    - mcp__claude_ai_Google_Calendar
+    - mcp__claude_ai_Google_Drive
+    - mcp__claude_ai_Granola
+    - mcp__claude_ai_Claude_Docs
+    - mcp__claude_ai_HubSpot
+    - mcp__claude_ai_Microsoft_365

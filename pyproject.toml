@@ -1,0 +1,71 @@
+[project]
+name = "energy-digest"
+version = "0.1.0"
+description = "Daily energy-markets digest (US/UK/Brazil/NZ) scored and synthesized with headless Claude Code, delivered as a Slack self-DM"
+readme = "README.md"
+authors = [
+    { name = "mohkar123" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "feedparser>=6.0.14",
+    "googlenewsdecoder>=0.2.1",
+    "httpx>=0.28.1",
+    "jinja2>=3.1.6",
+    "pydantic>=2.14.0",
+    "python-json-logger>=4.2.0",
+    "pyyaml>=6.0.3",
+    "rapidfuzz>=3.14.6",
+    "selectolax<1",
+    "trafilatura>=2.3.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.26,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.414",
+    "pytest>=9.1.1",
+    "ruff>=0.16.10",
+    "types-pyyaml>=6.0.12.20260906",
+]
+
+[project.scripts]
+digest = "energy_digest.cli:main"
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "W191", "E111", "E114", "E117", "D206", "D300",
+    "Q000", "Q001", "Q002", "Q003",
+    "COM812", "COM819", "ISC001", "ISC002",
+    "D203", "D213", "FIX002", "TD002", "TD003", "CPY001",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101", "ARG", "FBT", "PLR2004", "SLF001", "D", "ANN201"]
+"hooks/*.py" = ["T201", "INP001"]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.pyright]
+typeCheckingMode = "standard"
+include = ["src", "tests", "hooks"]
+pythonVersion = "3.13"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = [
+    "-ra", "-q", "--strict-markers", "--strict-config",
+    "--import-mode=importlib", "-m", "not live",
+]
+filterwarnings = ["error"]
+markers = ["live: hits network/claude (deselected by default)"]

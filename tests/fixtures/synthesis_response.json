@@ -1,0 +1,138 @@
+{
+  "top_stories": [
+    {
+      "item_ids": [
+        "a1"
+      ],
+      "headline": "PUC approves rate case",
+      "summary": "Summary of PUC approves rate case",
+      "market": "US"
+    },
+    {
+      "item_ids": [
+        "a2",
+        "zz998"
+      ],
+      "headline": "Data-centre tariff proposed",
+      "summary": "Summary of Data-centre tariff proposed",
+      "market": "US"
+    },
+    {
+      "item_ids": [
+        "a3"
+      ],
+      "headline": "Northwind files AMP",
+      "summary": "Summary of Northwind files AMP",
+      "market": "NZ"
+    }
+  ],
+  "by_market": {
+    "US": [
+      {
+        "item_ids": [
+          "a1"
+        ],
+        "one_liner": "Rate case approved"
+      }
+    ],
+    "NZ": [
+      {
+        "item_ids": [
+          "a3"
+        ],
+        "one_liner": "AMP filed"
+      }
+    ]
+  },
+  "forecast_impact": [
+    {
+      "item_ids": [
+        "a2"
+      ],
+      "product_lines": [
+        "LTF"
+      ],
+      "impact_type": "opportunity",
+      "so_what": "Large-load growth lifts LTF step-change; see https://evil.example/x",
+      "suggested_action": "Update the step-change ledger",
+      "accounts": [
+        "Prairie Electric"
+      ]
+    }
+  ],
+  "radar": [
+    {
+      "item_ids": [
+        "a4"
+      ],
+      "market": "UK",
+      "signal": "MHHS milestone slips",
+      "signal_type": "wholesale-market-rules",
+      "next_milestone_date": "2026-12-01",
+      "forecast_lens": [
+        "Settlements"
+      ],
+      "opportunity": "Med",
+      "confidence": "R",
+      "next_step": "Check migration plan"
+    },
+    {
+      "item_ids": [
+        "zz999"
+      ],
+      "market": "BR",
+      "signal": "Unsourced claim",
+      "signal_type": "policy-legislation",
+      "next_milestone_date": null,
+      "forecast_lens": [],
+      "opportunity": "Low",
+      "confidence": "I",
+      "next_step": "Ignore"
+    }
+  ],
+  "upcoming": [
+    {
+      "item_ids": [
+        "a5"
+      ],
+      "date": "2026-11-03",
+      "market": "US",
+      "what": "Hearing on tariff",
+      "confidence": "C"
+    }
+  ],
+  "deep_dive": {
+    "market": "US",
+    "what_moved": [
+      {
+        "item_ids": [
+          "a1"
+        ],
+        "one_liner": "Rate case order"
+      }
+    ],
+    "regulatory_calendar": [
+      {
+        "date": "2026-11-03",
+        "what": "Hearing",
+        "item_ids": [
+          "a5"
+        ],
+        "confidence": "C"
+      }
+    ],
+    "account_implications": [
+      {
+        "item_ids": [
+          "a6"
+        ],
+        "one_liner": "Harbor Power load growth"
+      }
+    ],
+    "open_questions": [
+      "Will the order be appealed?"
+    ],
+    "competitors_mentioned": []
+  },
+  "week_in_review": null
+}

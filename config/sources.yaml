@@ -1,0 +1,223 @@
+- id: utilitydive
+  name: Utility Dive
+  market: US
+  kind: rss
+  url: https://www.utilitydive.com/feeds/news/
+  tier: press
+- id: eia-tie
+  name: EIA Today in Energy
+  market: US
+  kind: rss
+  url: https://www.eia.gov/rss/todayinenergy.xml
+  tier: primary
+- id: canary
+  name: Canary Media
+  market: US
+  kind: rss
+  url: https://canarymedia.com/rss.rss
+  tier: press
+- id: elexon
+  name: Elexon
+  market: UK
+  kind: rss
+  url: https://www.elexon.co.uk/feed/
+  tier: primary
+- id: neso
+  name: NESO
+  market: UK
+  kind: rss
+  url: https://www.neso.energy/rss.xml
+  tier: primary
+  keywords:
+  - market
+  - balancing
+  - connection
+  - reform
+  - capacity
+  - demand
+  - consultation
+  - flexibility
+  - MHHS
+  - settlement
+  - forecast
+- id: carbonbrief
+  name: Carbon Brief
+  market: UK
+  kind: rss
+  url: https://www.carbonbrief.org/feed/
+  tier: press
+  max_items: 15
+- id: megawhat
+  name: MegaWhat
+  market: BR
+  kind: rss
+  url: https://megawhat.uol.com.br/feed/
+  tier: press
+- id: canalenergia
+  name: Canal Energia
+  market: BR
+  kind: rss
+  url: https://www.canalenergia.com.br/feed/
+  tier: press
+  enabled: false  # 403 to non-browser clients (2026-10-09); covered by gnews pt-BR queries
+- id: rnz-business
+  name: RNZ Business
+  market: NZ
+  kind: rss
+  url: https://www.rnz.co.nz/rss/business.xml
+  tier: press
+  keywords:
+  - electricity
+  - power
+  - energy
+  - Transpower
+  - lines company
+  - Vector
+  - Meridian
+  - Contact
+  - Genesis
+  - Mercury
+  - gas
+  - hydro
+  - Electricity Authority
+  - Commerce Commission
+- id: gnews-us-ferc-order-or-rulemaking-electricity
+  name: 'Google News: FERC order OR rulemaking electricity'
+  market: US
+  kind: gnews
+  query: FERC order OR rulemaking electricity
+  locale: en-US
+  tier: aggregator
+- id: gnews-us-rate-case-electric-utility
+  name: 'Google News: "rate case" electric utility'
+  market: US
+  kind: gnews
+  query: '"rate case" electric utility'
+  locale: en-US
+  tier: aggregator
+- id: gnews-us-cpuc-electricity-decision
+  name: 'Google News: CPUC electricity decision'
+  market: US
+  kind: gnews
+  query: CPUC electricity decision
+  locale: en-US
+  tier: aggregator
+- id: gnews-us-pjm-or-ercot-or-caiso-or-miso-market
+  name: 'Google News: PJM OR ERCOT OR CAISO OR MISO market'
+  market: US
+  kind: gnews
+  query: PJM OR ERCOT OR CAISO OR MISO market
+  locale: en-US
+  tier: aggregator
+- id: gnews-us-data-center-load-forecast-utility
+  name: 'Google News: data center load forecast utility'
+  market: US
+  kind: gnews
+  query: data center load forecast utility
+  locale: en-US
+  tier: aggregator
+- id: gnews-uk-site-ofgem-gov-uk
+  name: 'Google News: site:ofgem.gov.uk'
+  market: UK
+  kind: gnews
+  query: site:ofgem.gov.uk
+  locale: en-GB
+  tier: aggregator
+- id: gnews-uk-ofgem-price-cap-or-consultation-or-decis
+  name: 'Google News: Ofgem price cap OR consultation OR decision'
+  market: UK
+  kind: gnews
+  query: Ofgem price cap OR consultation OR decision
+  locale: en-GB
+  tier: aggregator
+- id: gnews-uk-mhhs-market-wide-half-hourly-settlement
+  name: 'Google News: MHHS market-wide half-hourly settlement'
+  market: UK
+  kind: gnews
+  query: MHHS market-wide half-hourly settlement
+  locale: en-GB
+  tier: aggregator
+- id: gnews-uk-neso-or-clean-power-2030-grid
+  name: 'Google News: NESO OR "Clean Power 2030" grid'
+  market: UK
+  kind: gnews
+  query: NESO OR "Clean Power 2030" grid
+  locale: en-GB
+  tier: aggregator
+- id: gnews-br-aneel-reajuste-tarif-rio
+  name: 'Google News: ANEEL reajuste tarifário'
+  market: BR
+  kind: gnews
+  query: ANEEL reajuste tarifário
+  locale: pt-BR
+  tier: aggregator
+- id: gnews-br-bandeira-tarif-ria-aneel
+  name: 'Google News: bandeira tarifária ANEEL'
+  market: BR
+  kind: gnews
+  query: bandeira tarifária ANEEL
+  locale: pt-BR
+  tier: aggregator
+- id: gnews-br-ons-or-ccee-energia
+  name: 'Google News: ONS OR CCEE energia'
+  market: BR
+  kind: gnews
+  query: ONS OR CCEE energia
+  locale: pt-BR
+  tier: aggregator
+- id: gnews-br-leil-o-de-baterias-or-lrcap-armazenament
+  name: 'Google News: leilão de baterias OR LRCAP armazenamento'
+  market: BR
+  kind: gnews
+  query: leilão de baterias OR LRCAP armazenamento
+  locale: pt-BR
+  tier: aggregator
+- id: gnews-br-curtailment-or-corte-de-gera-o-renov-vei
+  name: 'Google News: curtailment OR "corte de geração" renováveis'
+  market: BR
+  kind: gnews
+  query: curtailment OR "corte de geração" renováveis
+  locale: pt-BR
+  tier: aggregator
+- id: gnews-nz-electricity-authority-new-zealand
+  name: 'Google News: "Electricity Authority" New Zealand'
+  market: NZ
+  kind: gnews
+  query: '"Electricity Authority" New Zealand'
+  locale: en-NZ
+  tier: aggregator
+- id: gnews-nz-commerce-commission-electricity-lines
+  name: 'Google News: "Commerce Commission" electricity lines'
+  market: NZ
+  kind: gnews
+  query: '"Commerce Commission" electricity lines'
+  locale: en-NZ
+  tier: aggregator
+- id: gnews-nz-transpower-or-lines-company
+  name: 'Google News: Transpower OR "lines company"'
+  market: NZ
+  kind: gnews
+  query: Transpower OR "lines company"
+  locale: en-NZ
+  tier: aggregator
+- id: gnews-other-aemo-or-aer-electricity
+  name: 'Google News: AEMO OR AER electricity'
+  market: OTHER
+  kind: gnews
+  query: AEMO OR AER electricity
+  locale: en-AU
+  tier: aggregator
+- id: gnews-other-ieso-or-oeb-ontario-electricity
+  name: 'Google News: IESO OR OEB Ontario electricity'
+  market: OTHER
+  kind: gnews
+  query: IESO OR OEB Ontario electricity
+  locale: en-CA
+  tier: aggregator
+- id: gnews-other-eu-electricity-market-reform
+  name: 'Google News: EU electricity market reform'
+  market: OTHER
+  kind: gnews
+  query: EU electricity market reform
+  locale: en-GB
+  tier: aggregator

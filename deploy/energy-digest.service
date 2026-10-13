@@ -1,0 +1,14 @@
+[Unit]
+Description=Energy market daily digest
+OnFailure=energy-digest-notify@%n.service
+
+[Service]
+Type=oneshot
+Environment=ENERGY_DIGEST_ROOT=%h/energy-digest
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+UnsetEnvironment=ANTHROPIC_API_KEY
+WorkingDirectory=%h/energy-digest
+ExecStart=%h/.local/bin/uv run --frozen --project %h/energy-digest digest run
+TimeoutStartSec=75min
+KillSignal=SIGINT
+TimeoutStopSec=30

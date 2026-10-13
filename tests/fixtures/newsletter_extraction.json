@@ -1,0 +1,268 @@
+{
+ "stories": [
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: commission races heat up",
+   "date": "2026-10-09T12:32:14Z",
+   "title": "Sponsor: Example Consulting (operating models)",
+   "url": "https://short.example.org/ExampleConsulting.10.9.news",
+   "blurb": "Example Consulting offers help turning utility strategy into disciplined execution.",
+   "is_sponsored": true,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: commission races heat up",
+   "date": "2026-10-09T12:32:14Z",
+   "title": "A state utility commission race could reshape pending rate requests.",
+   "url": "https://news.example.com/energy-biz/post/news-state-commission-race-could-reshape-rate-requests-Ab12Cd34Ef56Gh7",
+   "blurb": "Two commission seats are on the ballot and could affect pending electric rate requests in the state.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: commission races heat up",
+   "date": "2026-10-09T12:32:14Z",
+   "title": "Modernize grid planning with AI (Example Vendor A webinar)",
+   "url": "https://events.example.com/ev/AbCdEf0123456789exampleWebinarA",
+   "blurb": "Example Vendor A invites utilities to a session on AI-assisted planning and resilience.",
+   "is_sponsored": true,
+   "is_event": true,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: commission races heat up",
+   "date": "2026-10-09T12:32:14Z",
+   "title": "Governors form a collaborative to press PJM on market decisions.",
+   "url": "https://news.example.com/energy-management/post/news-governors-form-collaborative-to-press-pjm-Ij89Kl01Mn23Op4",
+   "blurb": "A bipartisan group of governors wants more say over PJM decisions as wholesale capacity costs climb.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: commission races heat up",
+   "date": "2026-10-09T12:32:14Z",
+   "title": "DOE announces $100M for small-utility cybersecurity.",
+   "url": "https://news.example.com/intelligent-utility/post/news-doe-announces-100m-for-small-utility-cybersecurity-Qr56St78Uv90Wx1",
+   "blurb": "DOE funds will support co-ops, municipal utilities and small IOUs with cybersecurity programmes.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: commission races heat up",
+   "date": "2026-10-09T12:32:14Z",
+   "title": "A southeastern utility proposes a large-load tariff for data centers over 50 MW.",
+   "url": "https://news.example.com/energy-biz/post/news-southeastern-utility-files-data-center-rate-plan-Yz23Ab45Cd67Ef8",
+   "blurb": "The proposed tariff would require large loads to cover infrastructure costs and pay exit fees; it now goes to the state commission.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: commission races heat up",
+   "date": "2026-10-09T12:32:14Z",
+   "title": "Inspect more assets without more crews (Example Vendor B webinar)",
+   "url": "https://events.example.com/ev/ZyXwVu9876543210exampleWebinarB",
+   "blurb": "Example Vendor B shows how remote inspection can extend field-crew capacity.",
+   "is_sponsored": true,
+   "is_event": true,
+   "event_date": null
+  },
+  {
+   "sender": "newsletter@divenewsletter.com",
+   "subject": "Community Solar Portfolios Available at Public Sale",
+   "date": "2026-10-08T19:24:03Z",
+   "title": "Community Solar Portfolios Available at Public Sale",
+   "url": "https://link.divenewsletter.com/click/10000001.20001/aHR0cHM6Ly9jZG4uZXhhbXBsZS5uZXQvbm90aWNlcy9Ob3RpY2Vfb2ZfUHVibGljX1NhbGUucGRm/a1b2c3d4e5f6a7b8c9d0e1f2",
+   "blurb": "A lender is auctioning membership interests in two community solar project companies.",
+   "is_sponsored": true,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "newsletter@divenewsletter.com",
+   "subject": "Where utility billing still loses customer trust",
+   "date": "2026-10-08T13:13:04Z",
+   "title": "The Utility Billing Journey: Where Customer Friction Starts",
+   "url": "https://link.divenewsletter.com/click/10000002.20002/aHR0cHM6Ly93d3cudmVuZG9yLmV4YW1wbGUuY29tL3Jlc291cmNlcy91dGlsaXR5LWJpbGxpbmctam91cm5leT91dG1fc291cmNlPW5ld3NsZXR0ZXImdXRtX21lZGl1bT1lbWFpbCZ1dG1fY2FtcGFpZ249ZXhhbXBsZQ/b2c3d4e5f6a7b8c9d0e1f2a3",
+   "blurb": "An Example Vendor survey of 1,000 bill payers finds few are satisfied with digital billing.",
+   "is_sponsored": true,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: data-centre pipeline shrinks",
+   "date": "2026-10-08T12:32:08Z",
+   "title": "Sponsor: Example Telecom 4G vs. 5G TCO calculator",
+   "url": "https://short.example.org/ExampleTelecom.10.8.news",
+   "blurb": "Example Telecom promotes a TCO calculator for the 4G network sunset.",
+   "is_sponsored": true,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: data-centre pipeline shrinks",
+   "date": "2026-10-08T12:32:08Z",
+   "title": "Campaign promises versus reality: can governors lower power bills?",
+   "url": "https://news.example.com/energy-management/post/news-can-governors-lower-power-bills-Gh90Ij12Kl34Mn5",
+   "blurb": "Governors have limited direct control over energy costs, since commissions and markets set most of the bill.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: data-centre pipeline shrinks",
+   "date": "2026-10-08T12:32:08Z",
+   "title": "Another record quarter for rate increase requests.",
+   "url": "https://news.example.com/energy-biz/post/news-another-record-quarter-for-rate-increase-requests-Op67Qr89St01Uv2",
+   "blurb": "Utilities requested $4.5B in electric and gas rate increases in the quarter, a new record.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: data-centre pipeline shrinks",
+   "date": "2026-10-08T12:32:08Z",
+   "title": "So far this year, over $260B in data center projects have been cancelled.",
+   "url": "https://news.example.com/energy-biz/post/news-over-260b-in-data-center-projects-cancelled-Wx34Yz56Ab78Cd9",
+   "blurb": "Roughly half of the cancelled investment was in two states, citing power availability and local opposition.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: data-centre pipeline shrinks",
+   "date": "2026-10-08T12:32:08Z",
+   "title": "A western utility plans $2B of generation to serve a 2.7 GW data center.",
+   "url": "https://news.example.com/energy-biz/post/news-western-utility-plans-2b-generation-for-data-center-Ef01Gh23Ij45Kl6",
+   "blurb": "The planned facility is expected to draw 2.7 GW at full build-out, more than the utility\u2019s current peak.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: data-centre pipeline shrinks",
+   "date": "2026-10-08T12:32:08Z",
+   "title": "Modernize grid planning with AI (Example Vendor A webinar)",
+   "url": "https://events.example.com/ev/AbCdEf0123456789exampleWebinarA",
+   "blurb": "Example Vendor A invites utilities to a session on AI-assisted planning and resilience.",
+   "is_sponsored": true,
+   "is_event": true,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: data-centre pipeline shrinks",
+   "date": "2026-10-08T12:32:08Z",
+   "title": "Inspect more assets without more crews (Example Vendor B webinar)",
+   "url": "https://events.example.com/ev/ZyXwVu9876543210exampleWebinarB",
+   "blurb": "Example Vendor B shows how remote inspection can extend field-crew capacity.",
+   "is_sponsored": true,
+   "is_event": true,
+   "event_date": null
+  },
+  {
+   "sender": "newsletter@divenewsletter.com",
+   "subject": "Build a Multi-asset VPP That Scales",
+   "date": "2026-10-07T19:22:01Z",
+   "title": "The Blueprint for a Grid-Scale DER Portfolio (Example Vendor C webinar)",
+   "url": "https://link.divenewsletter.com/click/10000003.20003/aHR0cHM6Ly9nby5leGFtcGxlLmNvbS9sLzEyMzQ1Ni8yMDI2LTA5LTI0L2FiY2RlZg/c3d4e5f6a7b8c9d0e1f2a3b4",
+   "blurb": "Example Vendor C speakers explain how to build a multi-asset virtual power plant.",
+   "is_sponsored": true,
+   "is_event": true,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: capacity prices climb",
+   "date": "2026-10-07T12:31:54Z",
+   "title": "Catch outage risks early (Example Vendor D webinar)",
+   "url": "https://events.example.com/ev/Mn67Op89Qr01St23exampleWebinarD",
+   "blurb": "Example Vendor D shows how real-time data can surface outage risk sooner.",
+   "is_sponsored": true,
+   "is_event": true,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: capacity prices climb",
+   "date": "2026-10-07T12:31:54Z",
+   "title": "Clean energy PACs target anti-renewable candidates.",
+   "url": "https://news.example.com/renewables/post/news-clean-energy-pacs-target-anti-renewable-candidates-Mn78Op90Qr12St3",
+   "blurb": "New clean energy political action committees plan to spend in state races this cycle.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: capacity prices climb",
+   "date": "2026-10-07T12:31:54Z",
+   "title": "Modernize grid planning with AI (Example Vendor A webinar)",
+   "url": "https://events.example.com/ev/AbCdEf0123456789exampleWebinarA",
+   "blurb": "Example Vendor A invites utilities to a session on AI-assisted planning and resilience.",
+   "is_sponsored": true,
+   "is_event": true,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: capacity prices climb",
+   "date": "2026-10-07T12:31:54Z",
+   "title": "Heating oil costs are set to jump 50% this winter.",
+   "url": "https://news.example.com/customer-engagement-experience/post/news-heating-oil-costs-set-to-jump-50-this-winter-Uv45Wx67Yz89Ab0",
+   "blurb": "Heating oil costs are projected to rise about 50% this winter while federal assistance is uncertain.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: capacity prices climb",
+   "date": "2026-10-07T12:31:54Z",
+   "title": "A 20-year PPA will add 890 MW of nuclear uprate capacity.",
+   "url": "https://news.example.com/nuclear/post/news-20-year-ppa-adds-890-mw-nuclear-uprate-Cd12Ef34Gh56Ij7",
+   "blurb": "A technology company and a nuclear operator signed a 20-year PPA to fund 890 MW of uprates.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: capacity prices climb",
+   "date": "2026-10-07T12:31:54Z",
+   "title": "A utility will let a data center double its demand during off-peak hours.",
+   "url": "https://news.example.com/energy-biz/post/news-utility-lets-data-center-double-demand-off-peak-Kl89Mn01Op23Qr4",
+   "blurb": "The data center can grow from 500 MW to 1 GW provided it curtails during system peaks.",
+   "is_sponsored": false,
+   "is_event": false,
+   "event_date": null
+  },
+  {
+   "sender": "hi@news.energycentral.com",
+   "subject": "Example digest: capacity prices climb",
+   "date": "2026-10-07T12:31:54Z",
+   "title": "Inspect more assets without more crews (Example Vendor B webinar)",
+   "url": "https://events.example.com/ev/ZyXwVu9876543210exampleWebinarB",
+   "blurb": "Example Vendor B shows how remote inspection can extend field-crew capacity.",
+   "is_sponsored": true,
+   "is_event": true,
+   "event_date": null
+  }
+ ]
+}
